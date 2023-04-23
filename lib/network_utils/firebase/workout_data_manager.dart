@@ -1,5 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../models/workout.dart';
+import 'package:StayFit/models/workout.dart';
 
 //Function to fetch all exercises from the database and return a list of exercises using the Exercise model
 void getAllWorkouts(List<Workout> workoutList) {

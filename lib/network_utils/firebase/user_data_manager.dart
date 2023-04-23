@@ -1,8 +1,6 @@
 // ignore: unused_import
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../models/firebase_user_info.dart';
-// ignore: unused_import
-import 'package:flutter/material.dart';
+import 'package:StayFit/models/firebase_user_info.dart';
 
 Future<bool> addUser(
     String firebaseUId, FirebaseUserInfo firebaseUserInfo) async {
@@ -39,8 +37,6 @@ void getCurrentUserInfo(String firebaseUID, FirebaseUserInfo userInfo) {
       userInfo.userName = extractedData['userName'];
       userInfo.userEmail = extractedData['userEmail'];
       userInfo.userProfilePhotoUrl = extractedData['userProfilePhotoUrl'];
-    } else {
-      print("Document does not exist on the database");
-    }
+    } else {}
   });
 }

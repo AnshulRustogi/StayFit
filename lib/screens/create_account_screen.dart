@@ -1,14 +1,14 @@
 import 'package:email_validator/email_validator.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../models/firebase_user_info.dart';
-import '../screens/login_screen.dart';
-import '../utilities/fittrack_text_style.dart';
+import 'package:StayFit/models/firebase_user_info.dart';
+import 'package:StayFit/screens/login_screen.dart';
+import 'package:StayFit/utilities/fittrack_text_style.dart';
 import 'package:get/get.dart';
-import '../network_utils/firebase/user_data_manager.dart';
-import '../utilities/fittrack_colors.dart';
+import 'package:StayFit/network_utils/firebase/user_data_manager.dart';
+import 'package:StayFit/utilities/fittrack_colors.dart';
 import 'after_login_screen.dart';
-import '../utilities/alert.dart';
+import 'package:StayFit/utilities/alert.dart';
 
 class CreateAccountScreen extends StatefulWidget {
   const CreateAccountScreen({super.key});

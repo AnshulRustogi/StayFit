@@ -4,11 +4,12 @@ import 'dart:convert';
 import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../screens/after_login_screen.dart';
+import 'package:StayFit/screens/after_login_screen.dart';
 import 'package:get/get.dart';
 import 'package:google_sign_in/google_sign_in.dart';
+// ignore: depend_on_referenced_packages
 import 'package:crypto/crypto.dart';
-import '../helpers/Globals.dart';
+import 'package:StayFit/helpers/Globals.dart';
 
 class AuthService {
   Future<void> signInWithGoogle(BuildContext ctx) async {

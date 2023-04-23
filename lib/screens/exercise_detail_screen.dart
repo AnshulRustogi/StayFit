@@ -1,8 +1,8 @@
 import 'package:StayFit/utilities/alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../models/exercise.dart';
-import '../utilities/fittrack_text_style.dart';
+import 'package:StayFit/models/exercise.dart';
+import 'package:StayFit/utilities/fittrack_text_style.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
 import 'package:video_player/video_player.dart';

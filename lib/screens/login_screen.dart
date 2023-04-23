@@ -1,10 +1,10 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../screens/create_account_screen.dart';
-import '../screens/after_login_screen.dart';
-import '../screens/forgot_password_screen.dart';
+import 'package:StayFit/screens/create_account_screen.dart';
+import 'package:StayFit/screens/after_login_screen.dart';
+import 'package:StayFit/screens/forgot_password_screen.dart';
 import 'package:get/get.dart';
-import '../utilities/alert.dart';
+import 'package:StayFit/utilities/alert.dart';
 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({Key? key}) : super(key: key);

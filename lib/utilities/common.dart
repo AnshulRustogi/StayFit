@@ -4,7 +4,7 @@ import 'package:google_sign_in/google_sign_in.dart';
 import 'package:lottie/lottie.dart';
 import 'package:material_dialogs/dialogs.dart';
 import 'package:material_dialogs/widgets/buttons/icon_outline_button.dart';
-import '../screens/login_screen.dart';
+import 'package:StayFit/screens/login_screen.dart';
 import 'fittrack_text.dart';
 
 class Common {

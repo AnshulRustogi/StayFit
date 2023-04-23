@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import '../utilities/fittrack_colors.dart';
+import 'package:StayFit/utilities/fittrack_colors.dart';
 import 'fittrack_size.dart';
 
 class FittrackTextStyle {

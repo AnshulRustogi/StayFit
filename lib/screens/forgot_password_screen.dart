@@ -1,8 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../screens/login_screen.dart';
+import 'package:StayFit/screens/login_screen.dart';
 import 'package:get/get.dart';
-import '../utilities/alert.dart';
+import 'package:StayFit/utilities/alert.dart';
 
 class ForgotPasswordScreen extends StatefulWidget {
   const ForgotPasswordScreen({Key? key}) : super(key: key);

@@ -1,8 +1,6 @@
 // ignore: unused_import
 import 'package:cloud_firestore/cloud_firestore.dart';
-import '../../models/exercise.dart';
-// ignore: unused_import
-import 'package:flutter/material.dart';
+import 'package:StayFit/models/exercise.dart';
 
 //Function to fetch all exercises from the database and return a list of exercises using the Exercise model
 Future<void> getAllExercises(

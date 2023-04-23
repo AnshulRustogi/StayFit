@@ -1,14 +1,11 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import '../models/exercise.dart';
-import '../utilities/fittrack_text_style.dart';
+import 'package:StayFit/models/exercise.dart';
+import 'package:StayFit/utilities/fittrack_text_style.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/get_navigation.dart';
-import '../models/firebase_user_info.dart';
-import '../utilities/common.dart';
-import '../utilities/fittrack_colors.dart';
-import '../network_utils/firebase/exercise_data_manager.dart';
-import '../models/workout.dart';
+import 'package:StayFit/network_utils/firebase/exercise_data_manager.dart';
+import 'package:StayFit/models/workout.dart';
 import 'exercise_detail_screen.dart';
 
 class ExerciseListScreen extends StatefulWidget {
