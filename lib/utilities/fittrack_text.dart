@@ -5,7 +5,7 @@ const String kWorkoutListTitle = 'Workouts';
 const String kWorkoutAddTrainingPageTitle = 'Training Add';
 
 //Page Description
-const String kDaysPageDescription = 'Choose an workout';
+const String kDaysPageDescription = 'Choose an goal for today: ';
 const String kWorkoutListPageDescription =
     'Select the workout you want to change';
 const String kWorkoutAddTrainingPageDescription =
