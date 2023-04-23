@@ -184,8 +184,10 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                             margin: const EdgeInsets.only(bottom: 20),
                             color: Colors.white,
                             child: Column(
-                              children: List.generate(exerciseList.length,
-                                  (index) => exercise(context, index)),
+                              children: List.generate(
+                                  exerciseList.length,
+                                  // (index) => exercise(context, index)),
+                                  (index) => exerciseList[index]),
                             ),
                           ),
                         ],
@@ -196,77 +198,6 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
               ),
             ))),
       ],
-    );
-  }
-
-  Widget exercise(BuildContext context, int index) {
-    return InkWell(
-      onTap: () {
-        print("Exercise ${index + 1} clicked");
-      },
-      child: Container(
-        width: double.infinity,
-        height: 100,
-        margin: const EdgeInsets.only(left: 15, right: 15, bottom: 15),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(10),
-          color: Colors.white,
-          boxShadow: [
-            BoxShadow(
-                color: Colors.black.withOpacity(0.12),
-                blurRadius: 5.0,
-                spreadRadius: 1.1)
-          ],
-        ),
-        child: Material(
-            color: Colors.transparent,
-            child: InkWell(
-              borderRadius: BorderRadius.circular(10),
-              child: Container(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: 20, vertical: 15),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(10),
-                ),
-                child: Row(
-                  children: [
-                    Expanded(
-                        child: ClipRRect(
-                            borderRadius: BorderRadius.circular(10),
-                            //Using image of square size
-                            child: Image.network(
-                              widget.workout.imagePath,
-                              fit: BoxFit.cover,
-                            ))),
-                    const SizedBox(width: 10),
-                    Expanded(
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(exerciseList[index].exerciseName,
-                              style: const TextStyle(
-                                  fontSize: 20, fontWeight: FontWeight.bold)),
-                          const SizedBox(height: 10),
-                          const Text("Exercies",
-                              style: TextStyle(
-                                  fontSize: 16,
-                                  fontWeight: FontWeight.w500,
-                                  color: Colors.grey),
-                              overflow: TextOverflow.ellipsis,
-                              maxLines: 2),
-                        ],
-                      ),
-                    ),
-                    //Adding a next button to navigate to the next screen
-                    const Icon(
-                      Icons.arrow_forward_ios,
-                      color: Colors.purple,
-                    ),
-                  ],
-                ),
-              ),
-            )),
-      ),
     );
   }
 
