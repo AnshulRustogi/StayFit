@@ -29,7 +29,12 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
   late List<Workout> workoutList;
   String firebaseUId = FirebaseAuth.instance.currentUser!.uid;
   late String userGoal;
-  List<String> goals = ["Body Building", "Weight Loss", "Flexibility"];
+  List<String> goals = [
+    "Body Building",
+    "Weight Loss",
+    "Flexibility",
+    "All Workout"
+  ];
 
   @override
   void initState() {
@@ -86,6 +91,9 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
 
   List<Workout> filterWorkoutList() {
     List<Workout> filteredWorkoutList = <Workout>[];
+    if (userGoal == "All Workout") {
+      return workoutList;
+    }
     for (Workout currentWorkout in workoutList) {
       // Checking if the workout is for the user's goal
       if (currentWorkout.goal.contains(userGoal)) {
