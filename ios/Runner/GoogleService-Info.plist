@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>CLIENT_ID</key>
+	<string>862431538280-96phg04kksh1a4jqv843sv2tcgtl5r4d.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.862431538280-96phg04kksh1a4jqv843sv2tcgtl5r4d</string>
+	<key>API_KEY</key>
+	<string>AIzaSyBzgLuXkk-TF8Q5JbvOQ52U5L-GYRdTszI</string>
+	<key>GCM_SENDER_ID</key>
+	<string>862431538280</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.example.stayfit</string>
+	<key>PROJECT_ID</key>
+	<string>stayfit-13804</string>
+	<key>STORAGE_BUCKET</key>
+	<string>stayfit-13804.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:862431538280:ios:a962659bb3b7acd3b81fdd</string>
+</dict>
+</plist>
