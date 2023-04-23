@@ -9,6 +9,7 @@ import '../utilities/common.dart';
 import '../utilities/fittrack_colors.dart';
 import '../network_utils/firebase/exercise_data_manager.dart';
 import '../models/workout.dart';
+import 'exercise_detail_screen.dart';
 
 class ExerciseListScreen extends StatefulWidget {
   final Workout workout;
@@ -30,7 +31,6 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
     super.initState();
     isLoading = true;
     // _scrollController.addListener(_scrollListener);
-    getExerciseList();
   }
 
   Future<void> getExerciseList() async {
@@ -38,7 +38,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
     getAllExercises(exerciseList, widget.workout.name);
     int intervalWait = 0;
     while (true) {
-      if (intervalWait == 20) {
+      if (intervalWait == 50) {
         setState(() {
           isError = true;
           isLoading = true;
@@ -46,10 +46,6 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
         break;
       }
       if (exerciseList.isNotEmpty) {
-        //Duplicate the exercliseList[0] 20 times
-        for (int i = 0; i < 20; i++) {
-          exerciseList.add(exerciseList[0]);
-        }
         setState(() {
           isLoading = false;
         });
@@ -61,6 +57,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
   }
 
   Widget loadingPage(BuildContext context) {
+    getExerciseList();
     if (isError) {
       return const Center(
         child: Text("Something went wrong"),
@@ -105,11 +102,6 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          // display heading without any margin at the top or padding at the bottom
-                          // Container(child: Placeholder())
-                          // Container which shows workout name in bold and a large font size
-                          // Then in the next line below the workout name it shows, in very light purple color, the number of exercises in the workout along with a icon of dumbbell
-                          // Then in the same line it shows the duration of the workout in minutes along with a icon of clock
                           Container(
                             width: double.infinity,
                             margin: const EdgeInsets.only(top: 10, bottom: 30),
@@ -121,7 +113,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                                     style: const TextStyle(
                                       // fontSize: 40,
                                       // Adjust the font size according to the length of the workout name
-                                      fontSize: 25,
+                                      fontSize: 30,
                                       fontWeight: FontWeight.bold,
                                     )),
                                 const SizedBox(height: 10),
@@ -187,7 +179,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                               children: List.generate(
                                   exerciseList.length,
                                   // (index) => exercise(context, index)),
-                                  (index) => exerciseList[index]),
+                                  (index) => exerciseWidget(index)),
                             ),
                           ),
                         ],
@@ -198,6 +190,18 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
               ),
             ))),
       ],
+    );
+  }
+
+  Widget exerciseWidget(int index) {
+    return InkWell(
+      child: exerciseList[index],
+      onTap: () {
+        Get.to(() => ExerciseDetailScreen(
+              exerciseList: exerciseList,
+              currentExerciseIndex: index,
+            ));
+      },
     );
   }
 
