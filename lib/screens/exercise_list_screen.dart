@@ -31,6 +31,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
     super.initState();
     isLoading = true;
     // _scrollController.addListener(_scrollListener);
+    getExerciseList();
   }
 
   Future<void> getExerciseList() async {
@@ -57,7 +58,6 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
   }
 
   Widget loadingPage(BuildContext context) {
-    getExerciseList();
     if (isError) {
       return const Center(
         child: Text("Something went wrong"),

@@ -37,25 +37,20 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
     isLoading = false;
     currentIndex = widget.currentExerciseIndex;
     exerciseList = widget.exerciseList;
-    // _controller = VideoPlayerController.network(
-    //     "https://static.videezy.com/system/resources/previews/000/038/503/original/alb_datglitch036_1080p_24fps.mp4");
     _controller = VideoPlayerController.network(
         exerciseList[currentIndex].exerciseVideoLink);
-    _initializeVideoPlayerFuture = _controller.initialize();
+    _initializeVideoPlayerFuture = _controller.initialize().catchError(
+      (error) {
+        setState(() {
+          isError = true;
+        });
+      },
+    );
+
     _controller.setLooping(false);
     _controller.setVolume(1.0);
 
     //
-  }
-
-  void setVideo(int currentIndex) {
-    //Try loading video if unable to load then raise alert
-    _controller = VideoPlayerController.network(
-        exerciseList[currentIndex].exerciseVideoLink);
-    _initializeVideoPlayerFuture = _controller.initialize();
-    _controller.setLooping(false);
-    _controller.setVolume(1.0);
-    _controller.play();
   }
 
   @override
@@ -136,6 +131,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
         ]),
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisSize: MainAxisSize.max,
           children: [
             SizedBox(
               width: MediaQuery.of(context).size.width / 2 - 50,
@@ -156,9 +152,16 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                           backgroundColor: Colors.green,
                           colorText: Colors.white);
                     }
+                    _controller.pause();
+                    _controller.dispose();
                     _controller = VideoPlayerController.network(
                         exerciseList[currentIndex].exerciseVideoLink);
-                    _initializeVideoPlayerFuture = _controller.initialize();
+                    _initializeVideoPlayerFuture =
+                        _controller.initialize().catchError((error) => {
+                              setState(() {
+                                isError = true;
+                              })
+                            });
                     _controller.setLooping(false);
                     _controller.setVolume(1);
                   });
@@ -184,9 +187,16 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                           backgroundColor: Colors.green,
                           colorText: Colors.white);
                     }
+                    _controller.pause();
+                    _controller.dispose();
                     _controller = VideoPlayerController.network(
                         exerciseList[currentIndex].exerciseVideoLink);
-                    _initializeVideoPlayerFuture = _controller.initialize();
+                    _initializeVideoPlayerFuture =
+                        _controller.initialize().catchError((error) => {
+                              setState(() {
+                                isError = true;
+                              })
+                            });
                     _controller.setLooping(false);
                     _controller.setVolume(1);
                   });
@@ -207,107 +217,64 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   }
 
   Widget videoPlayerWidget(BuildContext context) {
-    // return Container(
-    //   padding: const EdgeInsets.all(10),
-    //   child: Column(
-    //     children: [
-    //       FutureBuilder(
-    //           future: _initializeVideoPlayerFuture,
-    //           builder: (context, snapshot) {
-    //             if (snapshot.connectionState == ConnectionState.done) {
-    //               return ClipRRect(
-    //                 borderRadius: BorderRadius.circular(15),
-    //                 child: AspectRatio(
-    //                     aspectRatio: _controller.value.aspectRatio,
-    //                     child: VideoPlayer(_controller)),
-    //               );
-    //             } else {
-    //               return const Center(
-    //                 child: CircularProgressIndicator(),
-    //               );
-    //             }
-    //           }),
-    //       const SizedBox(
-    //         height: 10,
-    //       ),
-    //       FloatingActionButton.extended(
-    //         backgroundColor: const Color(0xff0F172A),
-    //         icon: Icon(
-    //             _controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
-    //         label: _controller.value.isPlaying
-    //             ? const Text("Pause")
-    //             : const Text("Play"),
-    //         onPressed: () {
-    //           setState(() {
-    //             if (_controller.value.isPlaying) {
-    //               _controller.pause();
-    //             } else {
-    //               _controller.play();
-    //             }
-    //           });
-    //         },
-    //       ),
-    //     ],
-    //   ),
-    // );
-    // Putting everything in a try catch block to avoid any errors
-    try {
-      return Container(
-        // height: MediaQuery.of(context).size.height / 2.8,
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: [
-            FutureBuilder(
-                future: _initializeVideoPlayerFuture,
-                builder: (context, snapshot) {
-                  if (snapshot.connectionState == ConnectionState.done) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: AspectRatio(
-                          aspectRatio: _controller.value.aspectRatio,
-                          child: VideoPlayer(_controller)),
-                    );
-                  } else {
-                    return const Center(
-                      child: CircularProgressIndicator(),
-                    );
-                  }
-                }),
-            const SizedBox(
-              height: 10,
+    return isError
+        ? Container(
+            padding: EdgeInsets.all(10),
+            child: const Center(
+              child: Text("Something went wrong",
+                  style: TextStyle(
+                      fontSize: 20,
+                      color: Colors.red,
+                      fontWeight: FontWeight.w900)),
             ),
-            FloatingActionButton.extended(
-              backgroundColor: const Color(0xff0F172A),
-              icon: Icon(
-                  _controller.value.isPlaying ? Icons.pause : Icons.play_arrow),
-              label: _controller.value.isPlaying
-                  ? const Text("Pause")
-                  : const Text("Play"),
-              onPressed: () {
-                setState(() {
-                  if (_controller.value.isPlaying) {
-                    _controller.pause();
-                  } else {
-                    _controller.play();
-                  }
-                });
-              },
+          )
+        : Container(
+            // height: MediaQuery.of(context).size.height / 2.8,
+            padding: const EdgeInsets.all(10),
+            child: SizedBox(
+              child: Column(
+                children: [
+                  FutureBuilder(
+                      future: _initializeVideoPlayerFuture,
+                      builder: (context, snapshot) {
+                        if (snapshot.connectionState == ConnectionState.done) {
+                          return ClipRRect(
+                            borderRadius: BorderRadius.circular(15),
+                            child: AspectRatio(
+                                aspectRatio: _controller.value.aspectRatio,
+                                child: VideoPlayer(_controller)),
+                          );
+                        } else {
+                          return const Center(
+                            child: CircularProgressIndicator(),
+                          );
+                        }
+                      }),
+                  const SizedBox(
+                    height: 10,
+                  ),
+                  FloatingActionButton.extended(
+                    backgroundColor: const Color(0xff0F172A),
+                    icon: Icon(_controller.value.isPlaying
+                        ? Icons.pause
+                        : Icons.play_arrow),
+                    label: _controller.value.isPlaying
+                        ? const Text("Pause")
+                        : const Text("Play"),
+                    onPressed: () {
+                      setState(() {
+                        if (_controller.value.isPlaying) {
+                          _controller.pause();
+                        } else {
+                          _controller.play();
+                        }
+                      });
+                    },
+                  ),
+                ],
+              ),
             ),
-          ],
-        ),
-      );
-    } catch (e) {
-      return Container(
-        padding: const EdgeInsets.all(10),
-        child: Column(
-          children: const [
-            Center(
-              child: CircularProgressIndicator(),
-            ),
-          ],
-        ),
-      );
-    }
+          );
   }
 
   @override

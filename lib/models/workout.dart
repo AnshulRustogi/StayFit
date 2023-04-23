@@ -109,16 +109,19 @@ class Workout extends StatelessWidget {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           // child: Image.asset(imagePath, fit: BoxFit.fill))),
-                          child: Image.network(
-                            imagePath,
-                            fit: BoxFit.fill,
-                            width: double.infinity,
-                            height: double.infinity,
-                          )))
+                          child: loadImage(imagePath))),
                 ],
               ),
             ),
           )),
     );
+  }
+
+  Widget loadImage(String imagePath) {
+    try {
+      return Image.network(imagePath, fit: BoxFit.fill);
+    } catch (e) {
+      return Image.asset("assets/images/placeholder.png", fit: BoxFit.fill);
+    }
   }
 }
