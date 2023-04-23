@@ -1,3 +1,4 @@
+import 'package:StayFit/utilities/alert.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import '../utilities/fittrack_text_style.dart';
@@ -27,6 +28,8 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
   late FirebaseUserInfo userInfo;
   late List<Workout> workoutList;
   String firebaseUId = FirebaseAuth.instance.currentUser!.uid;
+  late String userGoal;
+  List<String> goals = ["Body Building", "Weight Loss", "Flexibility"];
 
   @override
   void initState() {
@@ -36,6 +39,7 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
     isWorkoutAvailable = false;
     getUserInfo();
     getworkoutList();
+    userGoal = "Body Building";
   }
 
   Future<void> getUserInfo() async {
@@ -80,16 +84,25 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
     }
   }
 
+  List<Workout> filterWorkoutList() {
+    List<Workout> filteredWorkoutList = <Workout>[];
+    for (Workout currentWorkout in workoutList) {
+      // Checking if the workout is for the user's goal
+      if (currentWorkout.goal.contains(userGoal)) {
+        filteredWorkoutList.add(currentWorkout);
+      }
+    }
+    return filteredWorkoutList;
+  }
+
   Widget printworkoutList() {
     // Put the exercise widget from workoutList in a column
     return Column(children: [
-      for (Workout currentWorkout in workoutList)
+      for (Workout currentWorkout in filterWorkoutList())
         Padding(
           padding: const EdgeInsets.only(left: 20, right: 20, bottom: 20),
           child: InkWell(
             onTap: () {
-              // ignore: avoid_print
-              print("Tapped on exercise");
               Get.to(() => ExerciseListScreen(
                     workout: currentWorkout,
                   ));
@@ -114,6 +127,15 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
     );
   }
 
+  Widget getGoal() {
+    return Placeholder();
+  }
+
+  void updateProfile() {
+    alert("Feature to be added", "This feature is not available yet",
+        colorText: Colors.red, backgroundColor: Colors.white);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -127,6 +149,15 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
           ),
           centerTitle: false,
           actions: [
+            IconButton(
+              icon: const Icon(
+                Icons.supervised_user_circle,
+                color: Colors.white,
+              ),
+              onPressed: () {
+                updateProfile();
+              },
+            ),
             IconButton(
               icon: const Icon(
                 Icons.power_settings_new,
@@ -167,13 +198,44 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
                                     const SizedBox(
                                       height: 2.0,
                                     ),
-                                    const Text(
-                                      kDaysPageDescription,
+                                    Row(
+                                      children: const [
+                                        Text(kDaysPageDescription,
+                                            style: TextStyle(fontSize: 18)),
+                                      ],
                                     ),
-                                    const SizedBox(
-                                      height: 29.0,
-                                    )
                                   ])),
+                          Container(
+                            width: double.infinity,
+                            padding:
+                                const EdgeInsets.only(left: 20.0, right: 20),
+                            child: DropdownButton<String>(
+                              value: userGoal,
+                              icon: const Icon(Icons.arrow_downward),
+                              iconSize: 24,
+                              elevation: 16,
+                              style: const TextStyle(color: Colors.black),
+                              underline: Container(
+                                height: 2,
+                                color: Colors.deepPurpleAccent,
+                              ),
+                              onChanged: (String? newValue) {
+                                setState(() {
+                                  userGoal = newValue!;
+                                });
+                              },
+                              items: goals.map<DropdownMenuItem<String>>(
+                                  (String value) {
+                                return DropdownMenuItem<String>(
+                                  value: value,
+                                  child: Text(value),
+                                );
+                              }).toList(),
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 20.0,
+                          ),
                           isWorkoutAvailable
                               ? printworkoutList()
                               : const Center(

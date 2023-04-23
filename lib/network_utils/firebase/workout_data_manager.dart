@@ -14,9 +14,8 @@ void getAllWorkouts(List<Workout> workoutList) {
         numberOfSets: extractedData['numberOfSets'],
         minutes: extractedData['minutes'],
         imagePath: extractedData['imagePath'],
+        goal: extractedData['goal'],
       ));
     }
-    print("Exercise Added");
-    print("Number of exercises: ${workoutList.length}");
   });
 }

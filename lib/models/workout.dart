@@ -6,12 +6,14 @@ class Workout extends StatelessWidget {
   final int numberOfSets;
   final int minutes;
   final String imagePath;
+  final List<dynamic> goal;
   Workout(
       {super.key,
       required this.name,
       required this.numberOfSets,
       required this.minutes,
-      required this.imagePath});
+      required this.imagePath,
+      required this.goal});
 
   // ignore: non_constant_identifier_names
   factory Workout.Instance() {
@@ -20,6 +22,7 @@ class Workout extends StatelessWidget {
       numberOfSets: 0,
       minutes: 0,
       imagePath: "",
+      goal: const [],
     );
   }
   double titleFontSize = 25;
@@ -49,7 +52,7 @@ class Workout extends StatelessWidget {
 
     return Container(
       width: double.infinity,
-      height: 145,
+      height: 165,
       margin: const EdgeInsets.symmetric(horizontal: 0),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(10),
@@ -106,7 +109,12 @@ class Workout extends StatelessWidget {
                       child: ClipRRect(
                           borderRadius: BorderRadius.circular(15),
                           // child: Image.asset(imagePath, fit: BoxFit.fill))),
-                          child: Image.network(imagePath, fit: BoxFit.fill)))
+                          child: Image.network(
+                            imagePath,
+                            fit: BoxFit.fill,
+                            width: double.infinity,
+                            height: double.infinity,
+                          )))
                 ],
               ),
             ),

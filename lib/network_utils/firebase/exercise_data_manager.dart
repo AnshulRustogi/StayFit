@@ -26,6 +26,6 @@ Future<void> getAllExercises(
     }
   });
 
-  print("Exercises Extracted");
-  print("Number of Exercises: ${exerciseList.length}");
+  // print("Exercises Extracted");
+  // print("Number of Exercises: ${exerciseList.length}");
 }
