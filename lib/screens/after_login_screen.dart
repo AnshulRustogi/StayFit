@@ -33,7 +33,8 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
     "Body Building",
     "Weight Loss",
     "Flexibility",
-    "All Workout"
+    "All Workout",
+    "Choose a workout"
   ];
 
   @override
@@ -44,7 +45,7 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
     isWorkoutAvailable = false;
     getUserInfo();
     getworkoutList();
-    userGoal = "Body Building";
+    userGoal = "Choose a workout";
   }
 
   Future<void> getUserInfo() async {
@@ -90,6 +91,9 @@ class _AfterLoginScreenState extends State<AfterLoginScreen> {
   }
 
   List<Workout> filterWorkoutList() {
+    if (userGoal == "") {
+      return <Workout>[];
+    }
     List<Workout> filteredWorkoutList = <Workout>[];
     if (userGoal == "All Workout") {
       return workoutList;

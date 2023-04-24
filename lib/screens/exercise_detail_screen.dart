@@ -219,7 +219,7 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
   Widget videoPlayerWidget(BuildContext context) {
     return isError
         ? Container(
-            padding: EdgeInsets.all(10),
+            padding: const EdgeInsets.all(10),
             child: const Center(
               child: Text("Something went wrong",
                   style: TextStyle(
@@ -241,7 +241,9 @@ class _ExerciseDetailScreenState extends State<ExerciseDetailScreen> {
                           return ClipRRect(
                             borderRadius: BorderRadius.circular(15),
                             child: AspectRatio(
-                                aspectRatio: _controller.value.aspectRatio,
+                                // aspectRatio: _controller.value.aspectRatio,
+                                // Fix ascept ratio: to 16:9
+                                aspectRatio: 16.0 / 9.0,
                                 child: VideoPlayer(_controller)),
                           );
                         } else {
