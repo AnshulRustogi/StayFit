@@ -11,7 +11,7 @@ void getAllWorkouts(List<Workout> workoutList) {
       final extractedData = doc.data() as Map<String, dynamic>;
       workoutList.add(Workout(
         name: extractedData['name'],
-        numberOfSets: extractedData['numberOfSets'],
+        numberOfExercises: extractedData['numberOfExercises'],
         minutes: extractedData['minutes'],
         imagePath: extractedData['imagePath'],
         goal: extractedData['goal'],

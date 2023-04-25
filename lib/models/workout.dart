@@ -3,14 +3,14 @@ import 'package:flutter/material.dart';
 // ignore: must_be_immutable
 class Workout extends StatelessWidget {
   final String name;
-  final int numberOfSets;
+  final int numberOfExercises;
   final int minutes;
   final String imagePath;
   final List<dynamic> goal;
   Workout(
       {super.key,
       required this.name,
-      required this.numberOfSets,
+      required this.numberOfExercises,
       required this.minutes,
       required this.imagePath,
       required this.goal});
@@ -19,7 +19,7 @@ class Workout extends StatelessWidget {
   factory Workout.Instance() {
     return Workout(
       name: "",
-      numberOfSets: 0,
+      numberOfExercises: 0,
       minutes: 0,
       imagePath: "",
       goal: const [],
@@ -84,7 +84,7 @@ class Workout extends StatelessWidget {
                                 fontSize: titleFontSize,
                                 fontWeight: FontWeight.bold)),
                         SizedBox(height: sizeBoxHeight),
-                        Text("$numberOfSets Exercies",
+                        Text("$numberOfExercises Exercies",
                             style: TextStyle(
                                 fontSize: subtitleFontSize,
                                 fontWeight: FontWeight.w500,

@@ -130,7 +130,7 @@ class _ExerciseListScreenState extends State<ExerciseListScreen> {
                                             ),
                                             const SizedBox(width: 5),
                                             Text(
-                                              "${widget.workout.numberOfSets} Exercises",
+                                              "${widget.workout.numberOfExercises} Exercises",
                                               style: const TextStyle(
                                                   fontSize: 10,
                                                   fontWeight: FontWeight.bold,
