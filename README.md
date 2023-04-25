@@ -1,16 +1,16 @@
 # Stay Fit
 
-### Description
+## Description
 StayFit is a mobile-application built using Flutter & Dart language. The app supports user authentication and displays workout along with instructional videos.
 
-### Demo
-
-### Techstack, Model and Libraries
+## Demo
+[![Watch the video](https://media.giphy.com/media/v1.Y2lkPTc5MGI3NjExNDI1MTI3ODMwMjBlNGE3YjQ3MTNlNjgwM2E4YzYzNGQ2ZjJkNzczNCZlcD12MV9pbnRlcm5hbF9naWZzX2dpZklkJmN0PWc/HapMIl8c1kTSys3A9U/giphy.gif)](https://youtu.be/INzK47S8eN0)
+## Tech Stack
 - [Flutter](https://github.com/flutter/flutter): Flutter is Google's SDK for crafting beautiful, fast user experiences for mobile, web, and desktop from a single codebase.
 - [Firbase Authentication](https://firebase.google.com/docs/auth): Supports API-based user authentication, with modern standards OAuth2.0 and OpenID Connect
 - [Firestore Database](https://www.google.com/search?client=safari&rls=en&q=firestore+databse&ie=UTF-8&oe=UTF-8): Cloud-based NoSQL database with scalability from Firebase
 
-### Run the app
+## Run the app
 Note: Make sure Flutter is installed on the system and verify using
 ```
 flutter doctor -v
@@ -27,14 +27,14 @@ cd StayFit
 ```
 flutter pub get
 ```
-#### Setting up Firebase
+### Setting up Firebase
 4) After succesfull pull of all required dependencies, set-up firebase for authentication
     - Login onto to [firebase](https://firebase.google.com) and go to console
     - Click on add project, provide a name for reference (Eg: StayFit) and click on continue
     - After the project is loaded, click on Authentication -> Get Started -> Select Native Provider Email/Password, and enable it
     - Now go back to main project page, set up the firebase config files to Andriod and iOS [[Link for reference](https://sharma-vikashkr.medium.com/firebase-how-to-setup-an-app-in-firebase-9ddbacfe8ad1)] and place them in their respective folders
     
-#### Populating the database
+### Populating the database
 
 5) Set up cloud firestore and add the following tables:
     1) Start a new collection called **'Users'** where user data like name and email will be stored post sign-up 
@@ -63,8 +63,19 @@ flutter pub get
         * Repeat above sets for each workout and exercise you want to add. 
         Please note: All fields, collection names are case-sensitive
 
+**Sample Firestore screenshots**
+<p align="center">
+  <img alt="Light" src="https://github.com/anshulrustogi/StayFit/blob/main/images/firestore_user_collection.png?raw=true" width="33%">
+
+  <img alt="Dark" src="https://github.com/anshulrustogi/StayFit/blob/main/images/firestore_workout_collection.png?raw=true" width="33%">
+ <img alt="Dark" src="https://github.com/anshulrustogi/StayFit/blob/main/images/firestore_exercise_collection.png?raw=true" width="33%">
+</p>
+
+
 6) Now run the app using
 ```bash
 flutter run
 ```
+
+
 
