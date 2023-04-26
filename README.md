@@ -77,5 +77,8 @@ flutter pub get
 flutter run
 ```
 
+#### Credits
+Thanks to [HasibeZaferr](https://github.com/HasibeZaferr) for providing the login/signup gui for the app. [(Github Repo)](https://github.com/HasibeZaferr/flutter_getX_provider_firebase_CRUD).
+
 
 
